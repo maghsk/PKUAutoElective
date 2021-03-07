@@ -200,6 +200,12 @@ class AutoElectiveConfig(BaseConfig, metaclass=Singleton):
             ds[id_] = Delay(cid, threshold)
         return ds
 
+    # [wechat]
+
+    @property
+    def secret_key(self):
+        return self.get("wechat", "secret_key")
+
     ## Method
 
     def check_identify(self, identity):

@@ -9,6 +9,7 @@ import random
 from queue import Queue
 from collections import deque
 from itertools import combinations
+import requests
 from requests.compat import json
 from requests.exceptions import RequestException
 import numpy as np
@@ -499,6 +500,11 @@ def run_elective_loop():
                     continue
 
                 cout.info("Try to elect %s" % course)
+
+                if config.secret_key:
+                    params = {'title':'Course available', 'desp':course}
+                    req = requests.post(url = 'https://sctapi.ftqq.com/%s.send' % config.secret_key, params=params)
+                    req.close()
 
                 ## validate captcha first
 
